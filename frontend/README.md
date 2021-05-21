@@ -24,4 +24,7 @@ git remote add origin https://github.com/VolodymyrOsinchuk/PROSHOP.git
 git branch -M main
 git push -u origin main
 
+# Mongodb compass
+brew services start mongodb-community@3.6 // start
+brew services stop mongodb-community@3.6  //stop
 
