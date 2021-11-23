@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
   res.send("API start")
 });
 
-app.use("/api/products", productRoutes);
+app.use("/api", productRoutes);
 app.use("/api/users", userRoutes);
 // app.use("/api/upload", uploadRoutes);
 

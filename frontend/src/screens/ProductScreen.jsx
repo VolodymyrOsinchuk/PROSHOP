@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import {
   Button,
   Card,
@@ -11,25 +11,29 @@ import {
 } from "react-bootstrap";
 import Rating from "../components/Rating";
 import axios from "axios";
+import { API } from "../config/config";
 
-const ProductScreen = ({ history, match }) => {
+const ProductScreen = ({ match }) => {
+  //console.log('history >>> ', history);
+  console.log('match >> ', match);
+  
   const [product, setProduct] = useState({});
   const [qty, setQty] = useState(1);
 
- //console.log('product', product);
+ console.log('product', product);
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const { data } = await axios.get(`/api/products/${match.params.id}`);
-
+      const { data } = await axios.get(`${API}/api/products/${product._id}`);
+console.log("data", data)
       setProduct(data)
     }
 
     fetchProduct();
-  }, [match]);
+  }, [product._id]);
 
   const addToCartHandler = () => {
-    history.push(`/cart/${match.params.id}?qty=${qty}`)
+    return <Navigate to={`/cart/${match.params.id}?qty=${qty}`} />
   }
 
   return (
