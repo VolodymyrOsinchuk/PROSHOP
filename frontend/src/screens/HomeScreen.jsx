@@ -1,17 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 import Product from "../components/Product";
+import Message from "../components/Message";
+import Loader from "../components/Loader";
+//import { listProducts } from "
 import axios from "axios";
 
 
 const HomeScreen = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchProduct = async () => {
       const { data } = await axios.get('/api/products');
-
-      setProducts(data)
+      /* console.log("data>>>", data) */
+      if (data.error) {
+        setError(data.error)
+        setLoading(true)
+      } else {
+        setProducts(data);
+        setLoading(false)
+      }
     }
 
     fetchProduct();
@@ -20,6 +31,11 @@ const HomeScreen = () => {
   return (
     <>
       <h1>Latest ¨Products</h1>
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Message variant='danger'>{error}</Message>
+      ) : (
       <Row>
         {products.map((product) => {
           return (
@@ -29,6 +45,8 @@ const HomeScreen = () => {
           )
         })}
       </Row>
+
+      )}
     </>
   );
 };

@@ -8,10 +8,11 @@ import {upload} from "../routes/uploadRoutes.js"
 const getProducts = asyncHandler (async (req, res) => {
   try {
     const products = await Product.find({})
-    console.log(products)
+    //console.log(products)
     res.json(products);
   } catch (error) {
-    
+    console.error(error);
+    throw new Error('Some error')
   }
 });
 
