@@ -14,12 +14,20 @@ const Header = () => {
           <Navbar.Collapse className="justify-content-end">
             <Nav className="ml-auto">
               <LinkContainer to="/cart">
-                <Nav.Link style={{color:"white"}}><i className="fas fa-shopping-cart m-2" style={{color:"white"}} ></i>Cart</Nav.Link>
+                <Nav.Link style={{ color: "white" }}>
+                  <i
+                    className="fas fa-shopping-cart m-2"
+                    style={{ color: "white" }}
+                  ></i>
+                  Cart
+                </Nav.Link>
               </LinkContainer>
               <LinkContainer to="/login">
-                <Nav.Link style={{color:"white"}}><i className="fas fa-user m-2" style={{color:"white"}}></i>Login</Nav.Link>
+                <Nav.Link style={{ color: "white" }}>
+                  <i className="fas fa-user m-2" style={{ color: "white" }}></i>
+                  Login
+                </Nav.Link>
               </LinkContainer>
-
             </Nav>
           </Navbar.Collapse>
         </Container>
